@@ -1,0 +1,16 @@
+
+/**
+* Scenario : Whenever Accounts Phone field is updated then all related contact's phone field should get updated
+* with parent account's phone field.
+*/
+trigger AccountTrigger on Account (after update) {
+	/**
+    * Contact is child of Account, therefore, it is a best practice to update
+    * related records in after update/insert event
+    */
+    switch on Trigger.OperationType {
+        when  AFTER_UPDATE {
+            AccountTriggerHandler.updateContactsPhone(Trigger.new,Trigger.oldMap);
+        }
+    }
+}
