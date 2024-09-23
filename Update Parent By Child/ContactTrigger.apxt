@@ -1,0 +1,14 @@
+/*
+* Scenario : When contact's description is updated then its parent Account record's description should also get updated.
+* This can happen in two ways :
+* 1. When contact is created with description field - In this case oldMap would be null, same is handled in handler.
+* 2. When Contact is updated with description field
+* For now, this solution also updates description to null if it is set to blank on contact. To handle this we can simply add null check for description field.
+*/
+trigger ContactTrigger on Contact(after insert, after update){
+    switch on Trigger.OperationType {
+        when AFTER_UPDATE,AFTER_INSERT {
+            ContactTriggerHandler.updateDescriptionOfAccount(Trigger.new,Trigger.oldMap);
+        }
+    }
+}
