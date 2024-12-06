@@ -1,0 +1,20 @@
+trigger EmployeeTrigger on Employee__c(after insert, after update, after delete, after undelete){
+    switch on (Trigger.OperationType) {
+        when AFTER_INSERT {
+
+        }
+        when AFTER_UPDATE {
+
+        }
+        when BEFORE_UPDATE {
+
+        }
+        /*when AFTER_DELETE {
+
+        }*/
+        when AFTER_UNDELETE {
+
+        }
+    }
+    BEFORE_INSERT, BEFORE_UPDATE, BEFORE_DELETE,AFTER_INSERT, AFTER_UPDATE, AFTER_DELETE, and AFTER_UNDELETE
+}
