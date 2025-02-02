@@ -1,0 +1,20 @@
+/*
+* Trigger to count opp line item(grand Child) whose list price is greater than 50000 associated with Opportunity(Parent) and display that count on Account's(Grant Parent) custom field
+*/
+
+trigger OppLineItemTrigger on OpportunityLineItem(after insert, after update, after delete, after undelete){
+    switch on Trigger.OperationType {
+        when AFTER_INSERT {
+            OppLineItemTriggerHelper.afterInsertOperation(Trigger.new);
+        }
+        when AFTER_UPDATE {
+            OppLineItemTriggerHelper.afterUpdateOperation(Trigger.new,Trigger.oldMap);
+        }
+        when AFTER_DELETE {
+            OppLineItemTriggerHelper.afterDeleteOperation(Trigger.old);
+        }
+        when AFTER_UNDELETE {
+            OppLineItemTriggerHelper.afterUndeleteOperation(Trigger.new);
+        }
+    }
+}
